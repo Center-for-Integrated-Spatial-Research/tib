@@ -1,0 +1,1249 @@
+html, body {
+font-family: 'Myriad Pro', Corbel, Tahoma, 'Trebuchet MS', sans-serif;
+font-size: 12px;
+color:black;
+background: #000;
+width: 100%;
+height: 100%;
+padding: 0px;
+margin: 0px;
+overflow:hidden;	
+}
+
+#topDiv{
+background:#000 url('../images/islands.png') no-repeat 37px 0px ;
+width: 100%;
+height:70px;
+padding:0px 0px 0px 20px;
+color: #fff;
+overflow:hidden;	
+margin-top:2px;
+}
+
+#rightDiv {
+position:fixed;
+right:20px;
+top:130px;
+z-Index:101;
+}
+
+#leftDiv {
+position: fixed;
+left: 20px;
+top: 110px;
+z-index: 101;
+}
+
+#topLeftDiv {
+position:fixed;
+width:200px;
+height:70px;
+left:5px;
+}
+
+#topRightDiv {
+position:fixed;
+width:435px;
+height:70px;
+top:0px;
+right:0px;
+}
+
+#logos {
+height:53px;
+bottom:0px;
+position:absolute;
+right:16px;
+width:420px;
+padding:0px 0px 0px 0px;
+}
+
+#help {
+width:100%;
+font-size:11px;
+color:#fff;
+padding:0px 0px 0px 0px;
+margin:10px 0px 0px 0px;
+}
+
+#help a, #logos a {
+color:#fff;
+text-decoration:none;
+}
+
+#help .innerLinks {
+padding:0px 13px;
+}
+
+#help .outerLinkRight {
+padding-right:0px;
+padding-left:14px;
+}
+
+#help .outerLinkLeft {
+padding-right:14px;
+padding-left:0px;
+}
+
+#help, #language {
+position:absolute;
+top:70px;
+z-index:150;
+font-family: 'Myriad Pro', sans-serif;
+font-size:11px;
+color:#fff;
+background: #000000;
+padding:5px 0px 10px 0px;
+margin:0px 0px 0px 0px;
+text-align: right;
+border-bottom-left-radius: 6px;
+-moz-border-bottom-left-radius: 6px;
+-webkit-border-bottom-left-radius: 6px;
+-o-border-bottom-left-radius: 6px;
+border-bottom-right-radius: 6px;
+-moz-border-bottom-right-radius: 6px;
+-webkit-border-bottom-right-radius: 6px;
+-o-border-bottom-right-radius: 6px;
+}
+
+#help {
+width:100px;
+right:463px;
+}
+
+#language {
+width:90px;
+right:125px;
+padding: 5px 0px;
+}
+
+.links {
+background-color:#000000;
+padding: 3px 10px 3px 10px;
+cursor:hand;
+cursor:pointer;
+}
+
+.linksHovered {
+background-color:#666666;
+padding: 3px 10px 3px 10px;
+cursor:hand;
+cursor:pointer;
+}
+
+.link_arrow {
+width:7px;
+height:12px;
+background:#000000 url(../images/esri/spriteArrows.png) no-repeat 0px 5px;
+float: left;
+}
+
+#link_options, #link_language_options {
+position:absolute;
+width:65px;
+bottom:4px;
+right:465px;
+text-align: right;
+font-family: 'Myriad Pro', sans-serif;
+font-size:12px;
+color:#fff;
+cursor:hand;
+cursor:pointer;
+}
+
+#link_language_options {
+right:120px;
+width:70px;
+}
+
+#language_english, #language_spanish{
+position:relative;
+height: 22px;
+margin: 5px 0px;
+cursor:hand;
+cursor:pointer;
+}
+
+#es_language_app, #en_language_app{
+top: 1px;
+left: 8px;
+}
+
+#language_english_text, #language_spanish_text  {
+position:absolute;
+right: 10px;
+height: 22px;
+line-height:22px;
+}
+
+.language_circle {
+position:absolute;
+width:20px;
+height:20px;
+border-radius:20px;
+line-height:20px;
+display: table-cell;
+text-align: center;
+vertical-align: middle;
+color:#fff;
+background: #3c3c3c;
+cursor:pointer;
+cursor:hand;
+font-family: Arial;
+font-size: 10px;
+}
+
+#en {
+left: 71px;
+}
+
+#es {
+left: 98px;
+background: #1c1c1c;
+color: #666;
+}
+
+#progressBarDiv {
+position: absolute;
+background: url(../images/progressBar.gif) repeat-x scroll center center #CAD2DE;
+border: 1px solid #A2A2A2;
+display: none;
+width: 300px;
+height: 20px;
+left: 0px;
+top: 0px;
+z-index: 101;
+}
+
+#printOptionsDiv, #csvOptionsDiv, #baseMapOptionDiv {
+position: absolute;
+top: 10px;
+}
+
+#printOptionsDiv{
+width:175px;
+right: 90px;
+z-index: 102;
+display:none;
+}
+
+#csvOptionsDiv{
+width:150px;
+right: 72px;
+z-index: 103;
+display:none;
+}
+
+#baseMapOptionDiv {
+width:120px;
+right: 60px;
+z-index: 104;
+}
+
+#printSelector, #csvSelector, #baseMapSelector{
+position:relative;
+top:0px;
+left:0px;
+width:30px;
+height:30px;
+cursor:pointer;
+cursor:hand;
+border: 1px solid #6A6A6A;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+background-repeat: no-repeat;
+background-position: 0px 0px;
+}
+
+#baseMapSelector{
+background:#000 url(../images/navIcon_sprites/basemapIcon_sprite.png);
+}
+
+#printSelector {
+background:#000 url(../images/navIcon_sprites/printTool_sprite.png);
+}
+
+#csvSelector {
+background:#000 url(../images/navIcon_sprites/exportTableTool_sprite.png);
+}
+
+#printSelectorOptionsDiv, #csvSelectorOptionsDiv, #baseMapSelectorOptions {
+margin-top:7px;
+position:relative;
+left: -8px;
+background:#000;
+padding:10px;
+border:1px solid #6A6A6A;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+-o-border-radius: 4px;
+ box-shadow: 2px 2px 6px #6a6a6a;
+ -moz-box-shadow: 2px 2px 6px #6a6a6a;
+-webkit-box-shadow: 2px 2px 6px #6a6a6a;
+-o-box-shadow: 2px 2px 6px #6a6a6a;
+}
+
+#baseMapSelectorOptions{
+padding:7px 0px 7px 0px;
+color:#fff;
+}
+
+#printOptionsToolTip, #csvOptionsToolTip, #baseMapToolTip{
+position:absolute;
+width:12px;
+height:10px;
+top:-8px;
+left:17px;
+background:url(../images/tooltip_point.png) no-repeat top center;
+}
+
+#printOptionsTextNode, #csvOptionsTextNode{
+color:#fff;
+font-size:13px;
+font-weight:bold;
+text-align:center;
+margin:0px 0px 15px 0px;
+}
+
+#printOptionsDownload, #csvOptionsDownload{
+position:relative;
+margin:15px 0px 0px 0px;
+text-align:center;
+height:20px;
+}
+
+#csvOptionsDownload{
+margin:15px 0px 5px 0px;
+}
+
+#printOptionsFormat{
+position:relative;
+color:#fff;
+font-size:11px;
+margin:15px 0px 0px 0px;
+}
+
+#printOptionsFormat td{
+text-align:center;
+width:33%;
+}
+
+#printOptionsFormat label{
+position:relative;
+top:1px;
+}
+
+.baseMapOption {
+height:22px;
+background-color:#000;
+padding:8px 5px 0px 8px;
+cursor:pointer;
+cursor:hand;
+}
+
+.baseMapOptionHovered {
+height:22px;
+background-color:#404040;
+padding:8px 5px 0px 8px;
+cursor:pointer;
+cursor:hand;
+}
+
+.baseMapOptionImg {
+position: relative;
+left:0px;
+top:-5px;
+width:24px;
+height:24px;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+-o-border-radius: 4px;
+float:left;
+margin:0px 8px 0px 0px;
+}
+
+#basic_img{
+background:url("../images/newicons/basic.png") no-repeat center center;
+}
+
+#satellite_img{
+background:url("../images/newicons/satellite.png") no-repeat center center;
+}
+
+#topographic_img{
+background:url("../images/newicons/topographic.png") no-repeat center center;
+}
+
+#zoomToolsDiv {
+position:absolute;
+width:127px;
+height:32px;
+right: 20px;
+top: 10px;
+display:none;
+z-index: 105;
+cursor:hand;
+}
+
+#zoomInToolDiv, #zoomOutToolDiv, #zoomFullToolDiv , #overviewDiv, #zoomNavToolDiv {
+position:relative;
+width:30px;
+height:30px;
+margin: 0px 8px 0px 0px;
+float:right;
+cursor:pointer;
+cursor:hand;
+border: 1px solid #6A6A6A;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+-o-border-radius: 4px;
+}
+
+#zoomNavToolDiv {
+background:#000;
+}
+
+#zoomInIncrementDiv, #zoomOutIncrementDiv {
+width:30px;
+height:15px;
+}
+
+#zoomInIncrementDiv {
+border-bottom: 1px solid #6A6A6A;
+background:url(../images/navIcon_sprites/zoomIncrement_sprite.png);
+background-repeat: no-repeat;
+background-position: 0px 0px;
+}
+
+#zoomOutIncrementDiv {
+background:url(../images/navIcon_sprites/zoomDecrement_sprite.png);
+background-repeat: no-repeat;
+background-position: 0px 0px;
+}
+
+#zoomInToolDiv {
+background:#000 url(../images/navIcon_sprites/zoomInToolIcon_sprite.png);
+background-repeat: no-repeat;
+background-position: 0px 0px;
+}
+
+#zoomFullToolDiv {
+background:#000 url(../images/navIcon_sprites/zoomFullToolIcon_sprite.png);
+background-repeat: no-repeat;
+background-position: 0px 0px;
+}
+
+#overviewDiv {
+background:#000 url(../images/navIcon_sprites/overviewIcon_sprite.png);
+background-repeat: no-repeat;
+background-position: 0px 0px;
+}
+
+.maptooltip {
+padding: 5px;
+position: absolute;
+width: 100px;
+z-index: 9999;
+text-align:center;
+font:normal normal normal 8pt Arial;
+color: white;
+background-color: #000000;
+border: 1px solid #ffffff;
+opacity:0.7;
+filter:alpha(opacity=80); /* For IE8 and earlier */
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+-o-border-radius: 4px;
+ box-shadow: 2px 2px 6px #6a6a6a;
+ -moz-box-shadow: 2px 2px 6px #6a6a6a;
+-webkit-box-shadow: 2px 2px 6px #6a6a6a;
+-o-box-shadow: 2px 2px 6px #6a6a6a;
+}
+
+#islandDiv {
+margin: 20px 0px 0px 0px;
+}
+
+#searchContentDiv, #resultsContentDiv, #islandContentDiv, #ovContentDiv {
+position:relative;
+background: #fff;
+display:none;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+-o-border-radius: 4px;
+box-shadow: 2px 2px 6px #6a6a6a;
+-moz-box-shadow: 2px 2px 6px #6a6a6a;
+-webkit-box-shadow: 2px 2px 6px #6a6a6a;
+-o-box-shadow: 2px 2px 6px #6a6a6a;
+}
+
+#searchContentDiv .dijitTitlePaneTitle, #resultsContentDiv .dijitTitlePaneTitle, #islandContentDiv .dijitTitlePaneTitle, #ovContentDiv .dijitTitlePaneTitle {
+border-top-left-radius: 4px;
+-moz-border-top-left-radius: 4px;
+-webkit-border-top-left-radius: 4px;
+-o-border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+-moz-border-top-right-radius: 4px;
+-webkit-border-top-right-radius: 4px;
+-o-border-top-right-radius: 4px;
+}
+
+#searchContentDiv .dijitTitlePaneTitle.dijitClosed, #resultsContentDiv .dijitTitlePaneTitle.dijitClosed, #islandContentDiv .dijitTitlePaneTitle.dijitClosed, #ovContentDiv .dijitTitlePaneTitle.dijitClosed {
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+-o-border-radius: 4px;
+}
+
+#searchContentDiv .dijitTitlePaneContentOuter, #resultsContentDiv .dijitTitlePaneContentOuter, #islandContentDiv .dijitTitlePaneContentOuter, #ovContentDiv .dijitTitlePaneContentOuter {
+border-bottom-left-radius: 4px;
+-moz-border-bottom-left-radius: 4px;
+-webkit-border-bottom-left-radius: 4px;
+-o-border-bottom-left-radius: 4px;
+border-bottom-right-radius: 4px;
+-moz-border-bottom-right-radius: 4px;
+-webkit-border-bottom-right-radius: 4px;
+-o-border-bottom-right-radius: 4px;
+}
+
+#geography .dijitTitlePaneTitle, #geography .dijitTitlePaneTitle.dijitClosed {
+border-radius: 0px;
+-moz-border-radius: 0px;
+-webkit-border-radius: 0px;
+-o-border-radius: 0px;
+border-top-left-radius: 4px;
+-moz-border-top-left-radius: 4px;
+-webkit-border-top-left-radius: 4px;
+-o-border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+-moz-border-top-right-radius: 4px;
+-webkit-border-top-right-radius: 4px;
+-o-border-top-right-radius: 4px;
+}
+
+#threatened .dijitTitlePaneTitle , #threatened .dijitTitlePaneTitle.dijitClosed   {
+border-radius: 0px;
+-moz-border-radius: 0px;
+-webkit-border-radius: 0px;
+-o-border-radius: 0px;
+}
+
+
+#invasive .dijitTitlePaneTitle {
+border-radius: 0px;
+-moz-border-radius: 0px;
+-webkit-border-radius: 0px;
+-o-border-radius: 0px;
+border-bottom-left-radius: 0px;
+-moz-border-bottom-left-radius: 0px;
+-webkit-border-bottom-left-radius: 0px;
+-o-border-bottom-left-radius: 0px;
+border-bottom-right-radius: 0px;
+-moz-border-bottom-right-radius: 0px;
+-webkit-border-bottom-right-radius: 0px;
+-o-border-bottom-right-radius: 0px;
+}
+
+#invasive .dijitTitlePaneTitle.dijitClosed {
+border-radius: 0px;
+-moz-border-radius: 0px;
+-webkit-border-radius: 0px;
+-o-border-radius: 0px;
+border-bottom-left-radius: 4px;
+-moz-border-bottom-left-radius: 4px;
+-webkit-border-bottom-left-radius: 4px;
+-o-border-bottom-left-radius: 4px;
+border-bottom-right-radius: 4px;
+-moz-border-bottom-right-radius: 4px;
+-webkit-border-bottom-right-radius: 4px;
+-o-border-bottom-right-radius: 4px;
+}
+
+#invasive  .dijitTitlePaneContentInner {
+border-bottom-left-radius: 4px;
+-moz-border-bottom-left-radius: 4px;
+-webkit-border-bottom-left-radius: 4px;
+-o-border-bottom-left-radius: 4px;
+border-bottom-right-radius: 4px;
+-moz-border-bottom-right-radius: 4px;
+-webkit-border-bottom-right-radius: 4px;
+-o-border-bottom-right-radius: 4px;
+}
+
+#resultsContentDiv, #islandContentDiv {
+ margin: 15px 0px 0px 0px;
+}
+
+#resultsContentDiv{
+width:70px;
+}
+
+#ovContentDiv{
+width: 255px;
+left: 0px
+}
+
+#ovContent {
+position:relative;
+width: 255px;
+height: 140px;
+overflow: hidden;
+}
+
+#islandContentDiv{
+width: 255px;
+}
+
+#islandContent{
+width: 235px;
+}
+
+#galleryContentDiv {
+display:none;
+width:100%;
+height:80px;
+}
+
+#galleryContent {
+width:100%;
+height:80px;
+background: transparent url('../images/carousel/image-loader.gif') no-repeat 50% 50%;
+}
+
+#gallery{
+position:relative;
+width:100%;
+height:72px;
+}
+
+#noThumbnails {
+position:absolute;
+width:100%;
+top:30px;
+text-align:center !important;
+}
+
+#gallery ul {
+margin: 0px;
+}
+
+#gallery  li img{
+width: 85px;
+height: 70px;
+}
+
+#infoTabs {
+display:none;
+}
+
+#islandTitle {
+margin:0px 0px 5px 0px;
+font-weight:bold;
+text-align:center;
+}
+
+.eradicationLink {
+text-decoration:none;
+color:#000;
+cursor:hand;
+cursor:pointer;
+}
+
+.eradicationLinkOver {
+text-decoration:underline;
+color:#D9310B;
+cursor:hand;
+cursor:pointer;
+}
+
+#searchContent{
+width: 310px;
+}
+
+#drawToolsDiv {
+position:relative; width:100%; height:20px; margin:10px 0px 0px 0px;
+}
+
+#graphicText {
+position:absolute; top:0px; left:2px; width:50px; cursor:hand; cursor:pointer; padding-top:2px;
+}
+
+#extentSelect {
+position:absolute; 
+top:0px; 
+left:75px; 
+width:103px; 
+cursor:hand; 
+cursor:pointer; 
+padding:2px 2px 1px 4px; 
+border:1px solid #ffffff; 
+background: #ffffff;
+}
+
+#polySelect {
+position:absolute; 
+top:0px; 
+left:198px; 
+width:10px; 
+cursor:hand; 
+cursor:pointer; 
+padding:2px 2px 1px 4px;
+border:1px solid #ffffff; 
+background: #ffffff;
+}
+
+.drawToolIcon {
+position:relative; width:18px; height:18px; float:left;
+}
+
+.drawToolText {
+position:relative; width:78px; height:18px; float:left;
+}
+
+#buttonDiv {
+margin: 5px 0px 0px 0px;
+text-align: center;
+}
+
+#resultsContent{
+width: 310px;
+padding:0px 0px 10px 0px;
+}
+
+#queryDefinition {
+margin:0px 0px 10px 0px;
+padding:5px;
+border:1px solid #ccc;
+background:#eee;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+-o-border-radius: 4px;
+}
+
+#r_threats_type, #r_invasives_type {
+margin:5px 0px 0px 0px;
+padding:2px 5px 7px 5px;
+border:1px solid #ccc;
+background:#eee;
+}
+
+#r_threats_spp_type, #r_breeding_type , #r_invasives_spp_type, #r_invasives_status_type {
+margin:2px 2px 0px 5px;
+padding:2px 0px 2px 5px;
+border:1px dotted #ccc;
+background:#f5f5f5;
+}
+
+#island_threat_types, #island_invasive_types, #island_details {
+padding:5px;
+border:1px solid #ccc;
+background:#eee;
+overflow:auto;
+height:150px;
+}
+
+.toggleImages {
+position:relative;
+top:4px;
+}
+
+.i_header {
+font-weight:bold;
+color:#444444;
+vertical-align:center;
+background:#ccccca;
+padding:2px;
+}
+
+.i_red_list, .r_red_list {
+font-size:85%;
+vertical-align:center;
+text-align:center;
+}
+
+.lc, .nt, .vu, .en, .cr, .ew, .ex {
+}
+
+.confirm, .probable, .potential, .data_deficient, .extirpated, .extinct, .introduced, .na {
+}
+
+.r_scientific_name, .i_scientific_name {
+font-size:95%;
+font-style:italic;
+text-align:center;
+vertical-align:center;
+}
+
+.i_present_breeding {
+font-size:95%;
+}
+
+.i_historic_breeding, .r_common_name, .i_common_name   {
+font-size:85%;
+color:#666;
+}
+
+.i_status {
+font-size:95%;
+text-align:center;
+vertical-align:center;
+}
+
+.i_header .i_common_name, .i_header .i_historic_breeding {
+color:#444444;
+}
+
+.r_count {
+font-size:95%;
+vertical-align:center;
+}
+
+#r_threatened_on_islands {
+margin:5px 0px 0px 0px;
+border-top-left-radius: 4px;
+-moz-border-top-left-radius: 4px;
+-webkit-border-top-left-radius: 4px;
+-o-border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+-moz-border-top-right-radius: 4px;
+-webkit-border-top-right-radius: 4px;
+-o-border-top-right-radius: 4px;
+}
+
+#r_invasives_on_islands {
+margin:2px 0px 0px 0px;
+border-bottom-left-radius: 4px;
+-moz-border-bottom-left-radius: 4px;
+-webkit-border-bottom-left-radius: 4px;
+-o-border-bottom-left-radius: 4px;
+border-bottom-right-radius: 4px;
+-moz-border-bottom-right-radius: 4px;
+-webkit-border-bottom-right-radius: 4px;
+-o-border-bottom-right-radius: 4px;
+}
+
+#r_invasives_on_islands  .dijitTitlePaneContentInner {
+border-bottom-left-radius: 4px;
+-moz-border-bottom-left-radius: 4px;
+-webkit-border-bottom-left-radius: 4px;
+-o-border-bottom-left-radius: 4px;
+border-bottom-right-radius: 4px;
+-moz-border-bottom-right-radius: 4px;
+-webkit-border-bottom-right-radius: 4px;
+-o-border-bottom-right-radius: 4px;
+}
+
+#r_sensitive_species_present {
+display:none;
+margin-top:5px;
+text-align: center;
+font-size: 11px;
+}
+
+.summarySubItem {
+display:none;
+margin:0px 0px 0px 0px;
+cursor:hand;
+cursor:pointer;
+}
+
+.summaryItem {
+cursor:hand;
+cursor:pointer;
+}
+
+.summarySubItemTable {
+width:100%;
+border:1px solid #cccccc;
+margin:4px 0px 4px 0px;
+}
+
+.islandSummaryItem {
+cursor:hand;
+cursor:pointer;
+}
+
+.rowOdd {
+background:#e5e5e1;
+}
+
+.rowEven {
+background:#ffffff;
+}
+
+.hovered {
+background: #e0eefc;
+}
+.definitionCategory{ padding:10px;background:#eeeeee;border:1px solid #cccccc; overflow:auto; height:260px;}
+.definition {padding:10px;border:1px dotted #ccc;background:#f5f5f5; }
+.definitionName {padding-left:3px;font-variant:small-caps;font-weight:bold;cursor:pointer; cursor:hand;}
+.definitionSub{ display:none;padding:0px 10px;}
+
+.aboutHeader {
+font-variant:small-caps;
+font-weight:bold;
+color:#404040;
+}
+
+#tableClose{
+position: absolute;
+width:55px;
+height:25px;
+right:10px;
+bottom:-8px;
+padding:2px 0px 0px 5px;
+font-family: Trebuchet MS, Tahoma;
+font-variant:small-caps;
+font-weight:bold;
+color:#fff;
+background:#000;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+-o-border-radius: 4px;
+box-shadow: 2px 2px 6px #6a6a6a;
+-moz-box-shadow: 2px 2px 6px #6a6a6a;
+-webkit-box-shadow: 2px 2px 6px #6a6a6a;
+-o-box-shadow: 2px 2px 6px #6a6a6a;
+z-index:102;
+display:none;
+cursor:hand;
+cursor:pointer;
+}
+
+#tableArrow {
+height: 7px;
+width: 7px;
+background: #000 url("../images/esri/spriteArrows.png") no-repeat -14px 0px;
+}
+
+#tableDiv {
+background:#000000;
+}
+
+.redListTooltip {
+font-family: 'Myriad Pro', Corbel, Tahoma, 'Trebuchet MS', sans-serif;
+font-size: 12px;
+text-align:center;
+}
+
+#searchContent .dijitTitlePaneTitle, #resultsContent  .dijitTitlePaneTitle {
+font-variant:normal;
+background: none repeat scroll 0 0 #808080;
+color:#fff;
+}
+
+#searchContent  .dijitTitlePaneContentInner  {
+border:1px solid #ccc;
+}
+
+#resultsContent  .dijitTitlePaneContentInner {
+padding:5px 10px 10px 10px;
+border:1px solid #ccc;
+}
+
+#tableDiv .dijitTabPaneWrapper {
+background: none repeat scroll 0 0 #000000;
+}
+
+#ovContentDiv .dijitTitlePaneContentInner {
+padding:0px;
+}
+#experts{
+font-weight:bold;
+text-decoration:underline;
+cursor:hand;
+cursor:pointer;
+}
+
+#about_underlay, #disclaimer_underlay,#termsOfUse_underlay,#errors_underlay,#definitions_underlay,#contributors_underlay, #news_underlay , #donate_underlay {
+background-color:#404040;
+}
+
+#about .dijitDialogPaneContent, #news .dijitDialogPaneContent , #disclaimer .dijitDialogPaneContent ,#termsOfUse .dijitDialogPaneContent ,#errors .dijitDialogPaneContent,#donate .dijitDialogPaneContent {
+font-size: 14px;
+}
+
+.dialogContent {
+/*display:none;*/
+}
+
+.tundra .dijitTooltipContainer {
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+-o-border-radius: 4px;
+padding:5px;
+max-width: 150px;
+}
+
+.tundra .dijitDialog {
+border: 1px solid #404040;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+-o-border-radius: 4px;
+box-shadow: 2px 2px 6px #6a6a6a;
+-moz-box-shadow: 2px 2px 6px #6a6a6a;
+-webkit-box-shadow: 2px 2px 6px #6a6a6a;
+-o-box-shadow: 2px 2px 6px #6a6a6a;
+}
+
+.tundra .dijitDialogTitleBar {
+background: none repeat scroll 0 0 #404040;
+}
+
+.tundra .dijitDialogTitle {
+font-size: 16px;
+font-weight: bold;
+font-variant:small-caps;
+color:#fff;
+}
+
+.dijitDialogPaneContent {
+width: 600px !important;
+padding: 15px;
+}
+
+.tundra .dijitTitlePaneTitle {
+font-family: Trebuchet MS, Tahoma;
+font-variant:small-caps;
+font-weight:bold;
+color:#fff;
+background: none repeat scroll 0 0 #404040;
+border: 0 solid #000000;
+padding: 1px 4px 5px 4px;
+}
+
+.tundra .dijitDialogCloseIconHover {
+background: url("../images/esri/tabCloseHover.png") no-repeat scroll right top transparent;
+}
+
+.tundra .dijitTitlePaneContentOuter {
+-moz-border-bottom-colors: none;
+-moz-border-image: none;
+-moz-border-left-colors: none;
+-moz-border-right-colors: none;
+-moz-border-top-colors: none;
+background: none repeat scroll 0 0 #FFFFFF;
+border-color: -moz-use-text-color #BFBFBF #BFBFBF;
+border-right: 0 solid #BFBFBF;
+border-style: none solid solid;
+border-width: 0;
+}
+
+.tundra .dijitTitlePane .dijitArrowNode {
+background-image: url("../images/esri/spriteArrows.png")
+}
+
+/*filterSelect Styles*/
+.tundra .dijitReset .dijitMenuItem {
+font-family: 'Myriad Pro', Tahoma, 'Trebuchet MS', sans-serif;
+padding:2px 5px;
+}
+
+.tundra .dijitReset  .dijitMenuItemHover, .tundra .dijitMenuItemSelected{
+background-color: #006f8e;
+}
+
+/*Zoom Slider Styles*/
+.tundra .dijitSliderRemainingBarH {
+background: #929496;
+outline: none;
+}
+
+.tundra .dijitSliderRightBumper {
+background: #929496;
+}
+
+.dijitSliderBumperH {
+    border-width: 0px 0 !important;
+    height: 4px;
+    width: 8px;
+}
+
+.tundra .dijitSliderBar {
+border-style: solid;
+outline: none;
+}
+
+.dijitSliderBarH {
+border-width: 0px 0 !important;
+height: 4px;
+}
+
+.tundra .dijitSliderProgressBarH {
+    background: #6C6E70 !important;
+}
+
+.tundra .dijitSliderFocused .dijitSliderProgressBarH, .tundra .dijitSliderFocused .dijitSliderLeftBumper {
+    background: #6C6E70 !important;
+}
+
+.tundra .dijitSliderIncrementIconH {
+background-position: 0px;
+}
+
+.tundra .dijitSliderDeccrementIconH {
+background-position: 0px;
+}
+
+.tundra .dijitSliderLeftBumper {
+background: #6C6E70 ;
+}
+
+.tundra .dijitSliderIncrementIconH, .tundra .dijitSliderIncrementIconV {
+background-image: url("../images/ZoomInIcon.png");
+background-repeat: no-repeat;
+cursor: pointer;
+height: 20px;
+width: 20px;
+}
+
+.tundra .dijitSliderDecrementIconH, .tundra .dijitSliderDecrementIconV {
+background-image: url("../images/ZoomOutIcon.png");
+background-repeat: no-repeat;
+cursor: pointer;
+height: 20px;
+width: 20px;
+}
+
+.tundra .dijitSliderImageHandleH {
+background: url("../images/ZoomSlider.png") no-repeat scroll center top transparent !important;
+border: 0 none;
+height: 16px;
+width: 16px;
+}
+.dijitSliderImageHandleH {
+left: 50%;
+top: -6px;
+vertical-align: top;
+}
+
+.tundra .dijitSplitter{
+background: none repeat scroll 0 0 #000 !important;
+}
+
+#tableDiv_splitter .dijitSplitterThumb {
+height:2px;
+background: none repeat scroll 0 0 #fff !important;
+}
+
+#centerDiv{
+text-align:left;
+background:#5992C9;
+padding:0px;
+width: 100%;
+margin: 2px 0px 0px 0px;
+}
+
+#footerDiv {
+/*border-top:solid 1px #444444;*/
+background:#000;
+height:26px;
+width: 100%;
+overflow:hidden;
+}
+
+#social {
+position:absolute;
+width:400px;
+height:24px;
+top:0px;
+left:15px;
+text-align:left;
+}
+
+#social {
+position:absolute;
+width:400px;
+height:20px;
+bottom:0px;
+left:140px;
+text-align:left;
+display:block;
+}
+
+#facebookDiv{
+position:absolute;
+top:2px;
+left:0px;
+width:20px;
+height:20px;
+margin-top:1px;
+}
+
+#facebookImg {
+margin:0px 0px 0px 0px;
+}
+
+#twitterDiv{
+position:absolute;
+top:1px;
+left:26px;
+width:20px;
+height:20px;
+margin-top:3px;
+}
+
+#twitterImg {
+margin:0px 0px 0px 0px;
+}
+
+#twittershare{
+position:absolute;
+width:110px;
+height:20px;
+top:0px;
+right:0px;
+}
+
+#donateDiv{
+position:absolute;
+top:2px;
+left:52px;
+width:20px;
+height:20px;
+margin-top:1px;
+cursor:hand;
+cursor:pointer;
+}
+
+#cisr {
+position:absolute;
+width:350px;
+top:6px;
+right:15px;
+font-size:10px;
+color:#fff;
+text-align:right;
+}
+
+#cisr a {
+color:#fff;
+text-decoration:none;
+}
+
+.termsDivAgree{
+padding: 10px 0px 10px 0px;
+text-align:center;
+}
+
+.termsDivButton {
+margin-top:10px;
+text-align:center;
+}
+
+.termsCheckLabel {
+position: relative;
+top:2px;
+font-weight:bold;
+color:#1a1a1a;
+}

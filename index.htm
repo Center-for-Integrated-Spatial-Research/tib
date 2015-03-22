@@ -1,0 +1,717 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<meta http-equiv="X-UA-Compatible" content="IE=7,IE=9" />
+<meta property="og:title" content="Threatened Island Biodiversity Database" />
+<meta property="og:type" content="non_profit" />
+<meta property="og:site_name" content="A global dataset of threatened island species at risk from invasive vertebrates" />
+<meta property="og:description" content="The Threatened Island Biodiversity database is the most comprehensive global review of IUCN Threatened Species breeding on islands and at risk from invasive vertebrates. Our goal is to help guide where conservation intervention can prevent island extinctions. To date the TIB database includes almost 2000 islands for 1182 threatened species, collated from 1800 scientific literature sources and the contribution of almost 400 experts." />
+<meta property="og:url" content="http://tib.islandconservation.org" />
+<meta property="og:image" content="http://tib.islandconservation.org/images/logos/tib.png" />
+<meta property="fb:admins" content="6700465" />
+<link rel="icon" href="images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="images/logos/favicon.png" />
+<title>Threatened Island Biodiversity Database</title>
+<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.1/js/dojo/dijit/themes/tundra/tundra.css">
+<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.1/js/esri/dijit/css/Popup.css">
+<link rel="stylesheet" type="text/css" href="css/viewer.css">
+<link rel="stylesheet" type="text/css" href="css/grid.css">
+<link rel="stylesheet" type="text/css" href="css/skin.css">
+<link rel="stylesheet" type="text/css" href="css/splash.css">
+<script type="text/javascript">
+var djConfig = { 	parseOnLoad: true };
+</script>
+<script>
+	var images = [ ["galapagos", 3], ["hawaii", 3], ["seychelles", 3] ];
+	var random = Math.floor(Math.random() * images.length);
+</script>
+<script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.1"></script>
+<script type="text/javascript" src="js/globals.js"></script>
+<script type="text/javascript" src="js/language_config.js"></script>
+<script type="text/javascript" src="js/language.js"></script>
+<script type="text/javascript" src="js/utility.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/query.js"></script>
+<script type="text/javascript" src="js/results.js"></script>
+<script type="text/javascript" src="js/images.js"></script>
+<script type="text/javascript" src="js/carousel/jquery.js"></script>
+<script type="text/javascript" src="js/carousel/jquery.easing.js"></script>
+<script type="text/javascript" src="js/carousel/jcarousel.js"></script>
+<script type="text/javascript" language="Javascript">
+dojo.addOnLoad(splashInit)
+</script>
+</head>
+<body class="tundra">
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<div id="splashOverlay">
+	<div id="splashFloater">
+		<div id="splashCenter">
+			<div id="splashRotator" style="image"></div>
+			<div id="exploreMap" onmouseover="hoverGoToMap('exploreMapHover')" onmouseout="hoverGoToMap('exploreMap')">
+				<div id="exploreMapHover"><img id="exploreMapHover_image" src="images/splash/exploreMapHover_en.png"></div>
+			</div>
+			<div id="tib">
+				<img src="images/logos/tib.png">
+			</div>			
+			<div id="splashLogos">
+				<img src="images/logos/IC.png" style="margin:0px 18px 0px 0px;">
+				<img src="images/logos/ISSG.png" style="margin:0px 15px 0px 0px;">
+				<img src="images/logos/Birdlife.png" style="margin:0px 15px 0px 0px;">
+				<img src="images/logos/UCSC.png" style="margin:0px 0px 0px 0px;">
+			</div>
+			<div id="splashLanguageDiv">
+				<div id="splash_language_text">Language:</div>
+				<div id="en_language_splash" class="language_circle" onclick="dijit.byId('splash_language_english_tooltip').close();resetForLanguageUpdate('en');toggleSplashLanguage('en');">En</div>
+				<div id="es_language_splash" class="language_circle" onclick="dijit.byId('splash_language_spanish_tooltip').close();resetForLanguageUpdate('es');toggleSplashLanguage('es');">Es</div>
+			</div>
+		</div>
+		<script>document.getElementById("splashCenter").style.background = "url(images/splash/" + images[random][0] + "_0_en.jpg) no-repeat";</script>
+	</div>
+</div>
+
+<div id="application" dojotype="dijit.layout.BorderContainer" design="headline" gutters="false" style="width:100%; height:100%;">
+	<!-- Header Pane (top) -->
+	<div id="topDiv" dojotype="dijit.layout.ContentPane" region="top">
+		<!-- Title Pane -->
+		<div id="topLeftDiv">
+			<img src="images/logos/tib_titlebar.png">
+		</div>
+		<div id="topRightDiv">
+			<div id="logos">
+				<a href="http://www.islandconservation.org" target="_blank"><img border="0" src="images/logos/IC.png" style="margin:0px 23px 0px 0px;"></a>
+				<a href="http://www.issg.org" target="_blank"><img border="0" src="images/logos/ISSG.png" style="margin:0px 20px 0px 0px;"></a>
+				<a href="http://www.birdlife.org" target="_blank"><img border="0" src="images/logos/Birdlife.png" style="margin:0px 20px 0px 0px;"></a>
+				<a href="http://ccal.ucsc.edu" target="_blank"><img border="0" src="images/logos/UCSC.png" style="margin:0px 0px 0px 0px;"></a>
+			</div>
+			<!-- 
+			<div id="help">
+				<a id="link_about" class="outerLinkLeft" href="javascript:void(0)" onclick="about.show();">About</a> | 
+				<a id="link_news" class="innerLinks" href="javascript:void(0)" onclick="news.show();">News</a> | 
+				<a id="link_disclaimer" class="innerLinks" href="javascript:void(0)" onclick="disclaimer.show();">Disclaimer</a> | 
+				<a id="link_terms" class="innerLinks" href="javascript:void(0)" onclick="termsOfUse.show();">Terms of use</a> | 
+				<a id="link_help" class="innerLinks" href="javascript:void(0)" onclick="errors.show();">How to Help </a> | 
+				<a id="link_contact" class="outerLinkRight" href="mailto:tib@islandconservation.org">Contact</a>
+			</div>
+			-->
+			<div id="link_options" onclick="toggleOptions('help')"><div class="link_arrow"></div> <span id="link_more">More Info</span></div>
+			<!--<div id="link_language_options" onclick="toggleOptions('language')"><div class="link_arrow"></div> <span id="link_language">Language</div>-->
+			
+		</div>
+	</div>
+
+	<!-- Map Pane (center) -->
+	<div id="centerDiv" dojotype="dijit.layout.BorderContainer" region="center" gutters="false">
+		<div id="mapDiv" dojotype="dijit.layout.ContentPane" region="center">
+			<div id="progressBarDiv"></div>
+			<div id="zoomToolsDiv">
+				<div  id="zoomNavToolDiv">
+					<div id="zoomInIncrementDiv" onmouseover="toolHover(this.id,'over')" onmouseout="toolHover(this.id,'out')" data-state="off"></div>
+					<div id="zoomOutIncrementDiv" onmouseover="toolHover(this.id,'over')" onmouseout="toolHover(this.id,'out')" data-state="off"></div>
+				</div>
+				<div id="zoomFullToolDiv" onmouseover="toolHover(this.id,'over')" onmouseout="toolHover(this.id,'out')" data-state="off"></div>
+				<div id="zoomInToolDiv" onmouseover="toolHover(this.id,'over')" onmouseout="toolHover(this.id,'out')" data-state="off"></div>
+			</div>
+			<div id="baseMapOptionDiv">
+					<div id="baseMapSelector" onmouseover="toolHover(this.id,'over')" onmouseout="toolHover(this.id,'out')" data-state="off"></div>
+					<div id="baseMapSelectorOptions" style="display:none;">
+						<div id="baseMapToolTip"></div>
+						<div id="Basic" class="baseMapOption" onclick="changeBaseMap(this,ovMapLayer);" onmouseover="hover(this, 'baseMapOptionHovered');" onmouseout="hover(this, 'baseMapOption');"><div id="basic_img" class="baseMapOptionImg"></div><span id="basemap_basic">Basic<span></div>
+						<div id="Satellite" class="baseMapOption" onclick="changeBaseMap(this,imageryLayer);" onmouseover="hover(this, 'baseMapOptionHovered');" onmouseout="hover(this, 'baseMapOption');"><div id="satellite_img" class="baseMapOptionImg"></div><span id="basemap_satellite">Satellite<span></div>
+						<div id="Topographic" class="baseMapOption" onclick="changeBaseMap(this,baseMapLayer);" onmouseover="hover(this, 'baseMapOptionHovered');" onmouseout="hover(this, 'baseMapOption');"><div id="topographic_img" class="baseMapOptionImg"></div><span id="basemap_topographic">Topographic<span></div>
+					</div>
+			</div>			
+			
+			<div id="printOptionsDiv">
+				<div id="printSelector" onmouseover="toolHover(this.id,'over')" onmouseout="toolHover(this.id,'out')" data-state="off"></div>
+				<div id="printSelectorOptionsDiv" style="display:none;">
+					<div id="printOptionsToolTip"></div>
+					<div id="printOptionsContent">
+						<div id="printOptionsTextNode">Export Map</div>
+						<div data-dojo-type="dijit.ProgressBar" id="printProgressBar"  data-dojo-id="printProgressBar" data-dojo-props="maximum:20"></div>
+						<!--<div id="printOptionsDownload"><a id="downloadPDF" href="#" target="_blank" class="appButton">Download</a></div>-->
+						<div id="printOptionsDownload"><button data-dojo-id="printButton" data-dojo-type="dijit.form.Button" type="button" id="printButton">Export</button></div>
+						<div id="printOptionsFormat">
+							<table>
+								<tr>
+									<td  style="width:37%"><input type="radio" data-dojo-type="dijit.form.RadioButton" name="format" id="Letter" checked value="Letter"/> <label for="Letter">Letter</label></td>
+									<td style="width:30%"><input type="radio" data-dojo-type="dijit.form.RadioButton" name="format" id="A4" value="A4"/> <label for="A4">A4</label></td>
+									<td><input type="radio" data-dojo-type="dijit.form.RadioButton" name="format" id="PPT" value="PPT"/> <label for="PPT">PPT </label></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="csvOptionsDiv">
+				<div id="csvSelector" onmouseover="toolHover(this.id,'over')" onmouseout="toolHover(this.id,'out')" data-state="off"></div>
+				<div id="csvSelectorOptionsDiv" style="display:none;">
+					<div id="csvOptionsToolTip"></div>
+					<div id="csvOptionsContent">
+						<div id="csvOptionsTextNode">Export to CSV</div>
+						<div data-dojo-type="dijit.ProgressBar" id="csvProgressBar"  data-dojo-id="csvProgressBar" data-dojo-props="maximum:5"></div>
+						<div id="csvOptionsDownload"><button data-dojo-id="csvButton" data-dojo-type="dijit.form.Button" type="button" id="csvButton">Export</button></div>
+					</div>
+					<div>
+						<form action="EchoHandler.ashx?check=true" name="csvForm" id="csvForm" method="post">
+							<input type="hidden" name="hiddenInput" id="hiddenInput" value=""/>
+							<input type="hidden" id="Message">
+						</form>					
+					</div>
+				</div>
+			</div>	
+			
+			<div id="leftDiv">
+				<div id="searchContentDiv" data-dojo-type="dijit.TitlePane" data-dojo-props="title:'Search', open:true">
+					<!-- Search Div -->
+					<div id="searchContent">
+						<!-- query (geography) pane -->
+						<div id="geography" data-dojo-type="dijit.TitlePane" style="width:100%; margin:2px 0px;" data-dojo-props="title:'... by geographic location', open:false">
+							<label id="regionSelect_label" for="regionSelect">Region:</label><br>
+							<input id="regionSelect"><br>
+							<div style="margin:5px 0px;">
+								<label id="countrySelect_label" for="countrySelect">Country:</label><br>
+								<input id="countrySelect"><br>
+							</div>							
+							<div style="margin:5px 0px;">
+								<label id="islandSelect_label" for="islandSelect">Island:</label><br>
+								<input id="islandSelect"><br>
+							</div>
+							<div>
+								<div id="drawToolsDiv">
+									<div id="graphicText" >Graphic:</div>
+									<div id="extentSelect" onclick="searchToolActivate('extentSelect')">
+										<div class="drawToolIcon"><img border="0" src="images/extentSelectIcon.png"></div>
+										<div id="rectangle" class="drawToolText">... by Rectangle</div>
+									</div>
+									
+									<div id="polySelect" onclick="searchToolActivate('polySelect')">
+										<div class="drawToolIcon"><img border="0" src="images/polygonSelectIcon.png"></div>
+										<div id="polygon" class="drawToolText">... by Polygon</div>
+									</div>
+									<div style="clear:both"></div>
+								</div>
+							</div>	
+						</div>
+						<!-- query (threatened) pane -->
+						<div id="threatened" data-dojo-type="dijit.TitlePane" style="width:100%; margin:2px 0px;" data-dojo-props="title:'... by threatened species', open:false">					
+							<div style="margin:0px 0px 0px 0px;">
+								<label id="threatenedTypeSelect_label" for="threatenedTypeSelect">Type:</label><br>
+								<input id="threatenedTypeSelect">
+							</div>							
+							
+							<div style="margin:5px 0px 0px 0px;">
+								<label id="threatenedOrderSelect_label" for="threatenedOrderSelect">Order:</label><br>
+								<input id="threatenedOrderSelect">
+							</div>
+							
+							<div style="margin:5px 0px 0px 0px;">
+								<label id="threatenedFamilySelect_label" for="threatenedFamilySelect">Family:</label><br>
+								<input id="threatenedFamilySelect">
+							</div>
+							
+							<div id="threatenedScientificSelectDiv" style="display:block; margin:5px 0px;">
+								<label id="threatenedScientificSelect_label" for="threatenedScientificSelect">Scientific Name:</label><br>
+								<input id="threatenedScientificSelect"><br>
+							</div>
+							<div id="threatenedCommonSelectDiv" style="display:none; margin:5px 0px;">
+								<label id="threatenedCommonSelect_label" for="threatenedCommonSelect">Common Name:</label><br>
+								<input id="threatenedCommonSelect"><br>
+							</div>
+							<input type="radio" data-dojo-type="dijit.form.RadioButton" name="th" id="thr_sci" checked value="thr_scientific" style="margin:0px 0px 0px 20px;"/>
+							<label id="thr_sci_label" for="thr_sci" style="margin:0px 20px 0px 2px;">Scientific Name</label>
+							<input type="radio" data-dojo-type="dijit.form.RadioButton" name="th" id="thr_com" value="thr_common"/>
+							<label id="thr_com_label" for="thr_com" style="margin:0px 0px 0px 2px;">Common Name</label>
+							
+							<div style="margin:5px 0px 0px 0px;">
+								<label id="threatenedStatusSelect_label" for="threatenedStatusSelect">Red List Status:</label><br>
+								<input id="threatenedStatusSelect">
+							</div>									
+						</div>					
+						<!-- query (invasive) pane -->
+						<div id="invasive" data-dojo-type="dijit.TitlePane" style="width:100%; margin:2px 0px;" data-dojo-props="title:'... by invasive species', open:false">
+							<label id="invasiveTypeSelect_label" for="invasiveTypeSelect">Type:</label><br>
+							<input id="invasiveTypeSelect"><br>
+							
+							<div id="invasiveScientificSelectDiv" style="display:block; margin:5px 0px;">
+								<label id="invasiveScientificSelect_label" for="invasiveScientificSelect">Scientific Name:</label><br>
+								<input id="invasiveScientificSelect"><br>
+							</div>
+							<div id="invasiveCommonSelectDiv" style="display:none; margin:5px 0px;">
+								<label id="invasiveCommonSelect_label" for="invasiveCommonSelect">Common Name:</label><br>
+								<input id="invasiveCommonSelect"><br>
+							</div>
+
+							<input type="radio" data-dojo-type="dijit.form.RadioButton" name="inv" id="inv_sci" checked value="inv_scientific" style="margin:0px 0px 0px 20px;"/>
+							<label id="inv_sci_label" for="inv_sci" style="margin:0px 20px 0px 2px;">Scientific Name</label>
+							<input type="radio" data-dojo-type="dijit.form.RadioButton" name="inv" id="inv_com" value="inv_common"/>
+							<label id="inv_com_label" for="inv_com" style="margin:0px 0px 0px 2px;">Common Name</label>
+							<br>					
+						</div>
+						<!-- query buttons -->
+						<div id="buttonDiv">
+							<button data-dojo-type="dijit.form.Button" type="button" id="searchButton">Run Search</button>
+							<button data-dojo-type="dijit.form.Button" type="button" id="clearButton">Clear Search</button>
+						</div>
+					</div>
+				</div>		
+				
+			<!-- Results Div -->		
+				<div id="resultsContentDiv" data-dojo-type="dijit.TitlePane" data-dojo-props="title:'Results', open:false">
+						<div id="resultsContent">
+							<div id="queryDefinition" >Filter: <b>&lt;None&gt;</b></div>
+							
+							<div id="r_threatened_on_islands" data-dojo-type="dijit.TitlePane" data-dojo-props="title:'... islands with threatened species: 0', open:false">
+								<div id="r_threats"><span id="r_threats_text">Number of species</span>: <b><span id="threats_sum">0 (0</span> <span id="threats_sum_text">populations</span>)</b></div>
+								<div id="r_threats_type">
+									<div class="summaryItem" id="r_threats_spp" onclick="toggleSubItem(this.id)"><span class="toggleImages" id="r_threats_spp_toggle"><img src="images\plus.png"></span>&nbsp;<span id="r_type_animal_threat_text">Type</span></div>
+									<div class="summarySubItem" id="r_threats_spp_type" style="height:22px; overflow:auto;"></div>
+									<div class="summaryItem"  id="r_breeding" onclick="showDefinitions(this.id, event);"><span class="toggleImages" id="r_breeding_toggle"><img src="images\plus.png"></span>&nbsp;<span id="r_status_breeding_text">Status (Present Breeding)</span></div>
+									<div class="summarySubItem" id="r_breeding_type" style="height:22px; overflow:auto;"></div>
+								</div>
+							</div>
+							
+							<div id="r_invasives_on_islands" data-dojo-type="dijit.TitlePane" data-dojo-props="title:'... islands with invasive species: 0', open:false">
+								<div id="r_invasives"><span id="r_invasives_text">Number of species</span>: <b><span id="invasives_sum">0 (0</span> <span id="invasives_sum_text">populations</span>)</span></b></div>
+								<div id="r_invasives_type">
+							
+									<div class="summaryItem" id="r_invasives_spp" onclick="toggleSubItem(this.id)"><span class="toggleImages" id="r_invasives_spp_toggle"><img src="images\plus.png"></span>&nbsp;<span id="r_type_animal_invasives_text">Type</span></div>
+									<div class="summarySubItem" id="r_invasives_spp_type" style="height:22px; overflow:auto;"></div>
+									<div class="summaryItem"  id="r_invasives_status" onclick="toggleSubItem(this.id)"><span class="toggleImages" id="r_invasives_status_toggle"><img src="images\plus.png"></span>&nbsp;<span id="r_status_invasive_text">Status (Invasive)</span></div>
+									<div class="summarySubItem" id="r_invasives_status_type" style="height:22px; overflow:auto;"></div>									
+								
+								</div>
+							</div>
+							<div id="r_invasives_not_islands" style="display:none;"><span id="r_invasives_not_islands_text">Islands without Invasive Species</span>: <b><span id="invasives_not_islands_sum">0</span></b></div>
+							<div id="r_sensitive_species_present" style="display:none;"><i>Note:</i> sensitive records have been omitted from the results</div>
+						</div>
+				</div>
+			</div>
+								
+			
+			
+			<div id="rightDiv">
+				<div id="ovContentDiv" data-dojo-type="dijit.TitlePane" data-dojo-props="title:'Overview Map', open:true">
+					<div id="ovContent"></div>
+				</div>
+			
+				<div id="islandContentDiv" data-dojo-type="dijit.TitlePane" data-dojo-props="title:'Island Details', open:true">
+					<div id="islandContent">
+						<div id="islandTitle">No Island Selected</div>
+						<div id="islandDetails">
+							<div  id="galleryContentDiv">
+								<div id="galleryContent"></div>
+							</div>
+							<div id="infoTabs" data-dojo-type="dijit.layout.TabContainer" data-dojo-props="tabPosition:'top', tabStrip:false" style="width:100%; height:195px;">
+								<div id="infoDetails" data-dojo-id="infoDetails" data-dojo-type="dijit.layout.ContentPane" title="Island">none</div>
+								<div id="infoThreatened" data-dojo-id="infoThreatened" data-dojo-type="dijit.layout.ContentPane" title="Threatened">none</div>
+								<div id="infoInvasive" data-dojo-id="infoInvasive" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="selected:true" title="Invasive">none</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="tableClose" onclick="toggleTable()">
+				<img id="tableArrow" src="images/esri/blank.gif">
+				<span id="table_header_text">Table</span>
+			</div>
+		</div>
+		<div id="tableDiv" dojoType="dijit.layout.ContentPane" splitter="true" gutters="false" region="bottom" maxSize="400" minSize="1" style="height:1px;" >
+			<div id="islandsDivContent" dojoType="dijit.layout.ContentPane"></div>
+		</div>
+	</div>
+
+	<!-- Footer Pane (bottom) -->
+	<div id="footerDiv" dojotype="dijit.layout.ContentPane" region="bottom">
+		<div id="appLanguageDiv">
+			<div id="app_language_text">Language:</div>
+			<div id="en_language_app" class="language_circle" onclick="dijit.byId('app_language_english_tooltip').close();clearSearchQueryData();resetForLanguageUpdate('en');toggleLanguage('en');">En</div>
+			<div id="es_language_app" class="language_circle" onclick="dijit.byId('app_language_spanish_tooltip').close();clearSearchQueryData();resetForLanguageUpdate('es');toggleLanguage('es');">Es</div>
+		</div>
+		<div id="social">
+			<div id="facebookDiv">
+				<a target="_blank" href="http://www.facebook.com/home.php?#/pages/Island-Conservation/40436439936?ref=ts"><img id="facebookImg" alt="FaceBook" border="0" src="images/facebook.png"></a>
+				<div style="display:none;" class="fb-like" data-href="http://tib.islandconservation.org" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false" data-font="trebuchet ms"></div>
+			</div>
+			<div id="twitterDiv">
+				<a target="_blank" href="http://www.twitter.com/noextinctions"><img id="twitterImg" border="0" alt="Twitter" src="images/twitter.png"></a>
+				<div id="twittershare" style="display:none;" >
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tib.islandconservation.org">Tweet</a>
+					<script>
+						!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+					</script>
+				</div>
+			</div>
+			<div id="donateDiv" onclick="">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="image" src="images/donate.png" border="0" name="submit">
+					<input type="hidden" name="hosted_button_id" value="N2J9SX9K58TJN">
+					<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHXwYJKoZIhvcNAQcEoIIHUDCCB0wCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYBLfSuHUZlpW4lppmJpKr7CV+AWewTvHSWfj8Q48kAbErNh5M7MTZlr9SHY9yt7GWfo1oMLDMgD+8eGCpulzkL6DJk/Xs1EOJJkY6482Y7ElXJEY0FvBhcKXQy0lO7le7hGY2EaTunATSYwamFq54fAPT2ASnFt/IyPWsCIuTRwqzELMAkGBSsOAwIaBQAwgdwGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIXDktl6IVUM+AgbisKgK57GauL9klMDQZkqiR2Q6U24cGty016VbTCW2sDzSF1CeZM91lWHMOW+jwnAGMedjS/O5GQ2XhaE+EZTUcfcIobG4PPGNR2YGL4+ROeWOM20eUgh9wOwpN6GfXP07qi6oLFaq05gHq6JJLCB6Z18oiZkUEEXBYoHMSi+GzOTT8mwmEWrHsq5iCXtJFRMug5QW2Q+ybNlMdHImS12/btDbO9m5iQOWnyrgDHX9ObqpM+shOLbGUoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMDUxMDI2MjE0MDQwWjAjBgkqhkiG9w0BCQQxFgQUhGOC2qFlcsiYsKBwFQGqYVvXFfUwDQYJKoZIhvcNAQEBBQAEgYBSsary1go5PLF4iNnhDkXfXW9eAXoukyA+KgpPJSXFLcs0DrEySQUYec9/ues5I29KxcXyurKprDMPRpchLxVMWxOU8ifQTUo/JDyr4syluvtyv89/CPDMKUKMokzOhaWhHdu1wf6FNfp3w/EGRD7lr4gvtwwylfZv7HEOlWN0TQ==-----END PKCS7-----
+					">
+				</form>				
+			</div>
+		</div>
+	
+		<div id="cisr">built by the <a target="_blank" href="http://spatial.cisr.ucsc.edu">center for integrated spatial research (cisr)</a> @ <a target="_blank\" href="http://www.ucsc.edu">ucsc</a></div>
+</div>
+
+<div id="help" style="display:none;">
+	<div id="link_about" class="links" onmouseover="hover(this, 'linksHovered');" onmouseout="hover(this, 'links');" onclick="about.show();toggleOptions();">About</div>
+	<div id="link_news" class="links" onmouseover="hover(this, 'linksHovered');" onmouseout="hover(this, 'links');" onclick="news.show();toggleOptions();">News</div>
+	<div id="link_species" class="links" onmouseover="hover(this, 'linksHovered');" onmouseout="hover(this, 'links');" onclick="species.show();toggleOptions();">Species</div> 
+	<div id="link_disclaimer" class="links" onmouseover="hover(this, 'linksHovered');" onmouseout="hover(this, 'links');" onclick="disclaimer.show();toggleOptions();">Disclaimer</div>
+	<div id="link_terms" class="links" onmouseover="hover(this, 'linksHovered');" onmouseout="hover(this, 'links');" onclick="termsOfUse.show();toggleOptions();">Terms of use</div> 
+	<div id="link_help" class="links" onmouseover="hover(this, 'linksHovered');" onmouseout="hover(this, 'links');" onclick="errors.show();toggleOptions();">How to Help </div>
+	<div id="link_contact_a" class="links" onmouseover="hover(this, 'linksHovered');" onmouseout="hover(this, 'links');"><a id="link_contact" class="alink" href="mailto:science@islandconservation.org">Contact</a></div>
+</div>
+
+<!--<div id="language" style="display:none;">
+	<div id="language_english" onmouseover="hoverLanguage(this, 'over');" onmouseout="hoverLanguage(this, 'out');" onclick="clearSearchQueryData();resetForLanguageUpdate('en');toggleOptions('language');">
+		<div id="en_language_circle" class="language_circle">En</div>
+		<div id="language_english_text">English</div>
+	</div>
+	<div id="language_spanish" onmouseover="hoverLanguage(this, 'over');" onmouseout="hoverLanguage(this, 'out');" onclick="clearSearchQueryData();resetForLanguageUpdate('es');toggleOptions('language');">
+		<div id="es_language_circle" class="language_circle">Es</div>
+		<div id="language_spanish_text">Spanish</div>
+	</div>
+</div>-->
+
+<!-- Informational Content (e.g. About, Disclaimer, Terms of Use, etc.) displayed using dijit.Dialogs -->
+<div id="donate" data-dojo-type="dijit.Dialog" data-dojo-id="donate" data-dojo-props="title:'Donate', draggable:false">
+	-- insert call-for-action (donation) text here --
+	<br/><br/>
+</div>
+
+<div id="about" data-dojo-type="dijit.Dialog" data-dojo-id="about" data-dojo-props="title:'About the Threatened Island Biodiversity (TIB) database', draggable:false">
+	<div id="aboutDialogContent">
+		<div id="aboutContent">
+			<span class="aboutHeader">Islands are...</span>
+			<div style="text-align:center;">
+				<img src="images/land_graph.png" style="margin:0px 20px 0px 0px;">
+				<img src="images/threat_graph.png" style="margin:0px 0px 0px 20px;">
+			</div>
+			<br/>
+			<span class="aboutHeader">A special conservation need.</span> Islands represent less than 5% of the earthâ€™s land area yet harbor 80% of known species extinctions since 1500 Ricketts et al. 2005, and 39% of todayâ€™s IUCN Critically Endangered species (TIB Partners 2012). Invasive vertebrates are a leading cause of insular extinctions and remain a critical threat to endangered island species today (MEA 2005).
+			<br/><br/>
+			<span class="aboutHeader">A special conservation opportunity.</span> Proven techniques to protect island biodiversity exist, including more than 1,000 successful island eradications of invasive vertebrates worldwide, often followed by remarkable recoveries of endangered species and ecosystems (Keitt et al. 2011). The challenge now is to increase the scale and application of these proven restoration tools to reverse this tide of island extinctions.
+			<br/><br/>
+			<span class="aboutHeader">Prioritizing conservation for threatened island biodiversity.</span> The Threatened Island Biodiversity database is the most comprehensive global review of IUCN Threatened Species breeding on islands and at risk from invasive vertebrates. Our goal is to help guide where conservation intervention can prevent island extinctions. To date the TIB database includes almost 2000 islands for 1300 threatened species, collated from 1800 scientific literature sources and the contribution of more then <span id="experts" onclick="contributors.show();" onmouseover="dojo.style(this.id, {'color':'#D9310B'});" onmouseout="dojo.style(this.id, {'color':'#000'});">500 experts</span>.
+			<br/><br/>
+			TIB partners include Island Conservation, University of California at Santa Cruz, Coastal Conservation Action Laboratory, BirdLife International, and the IUCN Invasive Species Specialist Group. Our recommended citation for the TIB database is:
+		</div>
+		<br/><br/>
+		Threatened Island Biodiversity Database Partners. 2014. The Threatened Island Biodiversity Database: developed by Island Conservation,University of California Santa Cruz Coastal Conservation Action Lab, BirdLife International and IUCN Invasive Species Specialist Group. Version 2014.1 &lt;www.tib.islandconservation.org&gt;.&nbsp;&nbsp;Downloaded on 
+		<script>
+			var months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+			var d = new Date();
+			document.write(months[d.getMonth()] + " " + d.getFullYear());
+		</script>.
+		<br/><br/>
+		<div id="aboutFunding">
+		The online Threatened Island Biodiversity database was built with the support of The David and Lucille Packard Foundation, the National Fish and Wildlife Foundation, and the Global Environment Facility.
+		</div>
+	<br/><br/>
+	<div id="aboutReferences" style="font-size:9pt; color:#707070; margin-bottom:10px;">	
+		<b><span id="aboutReferenceHeader">References</span></b>
+		<br/>
+		IUCN. 2013. The IUCN Red List of Threatened Species. Retrieved June 15, 2014, from http://www.iucnredlist.org/.
+		<br/>
+		Keitt, B., K. Campbell, A. Saunders, M. Clout, Y. Wang, R. Heinz, K. Newton, and B. Tershy. 2011. The Global Islands Invasive Vertebrate Eradication Database: A tool to improve and facilitate restoration of island ecosystems. In: Veitch, C. R.; Clout, M. N. and Towns, D. R. (eds) 2011.  Island invasives: Eradication and management. IUCN, (International Union for Conservation of Nature), Gland, Switzerland.
+		<br/>
+		MEA 2005. Millennium Ecosystem Assessment. Ecosystems and Human Well-being: Biodiversity Synthesis. World Resources Institute, Washington, DC.
+		<br/>
+		Ricketts, T.H., E. Dinerstein, T. Boucher, T.M. Brooks, S.H.M. Butchart, M. Hoffmann, et al. 2005. Pinpointing and preventing imminent extinctions. Proceedings of the National Academy of Sciences 102:18497-18501
+	</div>
+	
+</div>
+<div id="news" data-dojo-type="dijit.Dialog" data-dojo-id="news" data-dojo-props="title:'News', draggable:false">
+	<div id="newsContent" class="dialogContent">
+		<b>Version 2014.1</b>: (March 2013) Database is published online with comprehensive coverage for island breeding IUCN Critically Endangered and Endangered  birds, mammals, amphibians, reptiles plus Vulnerable seabirds. We anticipate adding a download feature in early 2013.
+	</div>
+</div>
+
+<div id="contributors" data-dojo-type="dijit.Dialog" data-dojo-id="contributors" data-dojo-props="title:'Contributors', draggable:false">
+	<b><span id="tib_data_collection_team">TIB Data Collection Team</span></b>: Kelly Newton, Dena Spatz, David Will, Nick Holmes, Reina Heinz, Erik Oberg, Rory Stansbury, Maddy Pott, Lauren Smith, Leslie Hart, Tyler Nodine, Kai Kopecky, Kevin Davidson, Sarah Sampson, Michael Dittman, Dean Roblee, John Harley, Erin Pickett, Alec Scott, Erin McCreless, Hilary Walecka, Lauren Salcedo, Roxanne Beltrane, Sara Cannon, Lindsay Kiel, Austin Robey, Coral Wolf, Lauren Telliard, James Bachellier, Christine Mellon, Kristin Mattingly, Anja Sjostrom, Paul Leon, Jimmy Fumo, Erica Nelson, Rian Weaver, Jessica Sutten, Devin Tucker, Shereen Ragoobeer, Jeannett Pirlo, Molly Nagel, Daniel O'Shea, Diego Osnaya, Chelsey Lindo, Brigid Moran.
+	<br/><br/>
+	<b><span id="contributing_experts">Contributing Experts</span></b>: Aaron Hebshi, Abe Borker, Abram Fleishman, Adam Brown, Adrian Schiavini, Ahmed Saeed, Al Baylis, Alan Burger, Alan Tennyson, Alan Tye, Aldrin Mallari, Alejandro Simeone, Alex Wegmann, Alexander Mischenko, Alexander Nazarenko, Alexandre Nascimento, Allison Hamilton, Alouise Lynch, Alvaro Jaramello, Amelia Geary, Ana Rainho, Ana Roman, Andrea Booth, Andrea Camperio Ciani, Andrew Burbidge, Andrew Cuttriss, Andrew Silcocks, Andrew Terry, Andy Douse, Andy Green, Angela Quiros, Angelica Crottini, Anna Nekaris, Anna Weinstein, Anne Brooke, Anne Gouni, Anne Harfenist, Annette Scanlon, Anton Wolfaardt, Araceli Samaniego, Arijana Barun, Arnaud Bechet, Arturo Kirkconnell, Bandana Aul, Baz Hughes, Ben Bell, Ben Nims, Bernie Tershy, Beth Flint, Bhathiya Kekulandala, Bill Pyle, Birgit Fessl, Blair Hedges, Bob Pitman, Bonnie Rusk, Boris Fabres, Brent Beaven, Brent Stephenson, Brian Sykes, Bruce Dyer, Bruce Mckinlay, Bryan Stuart, Bryson Voirin, Carita Bergman, Carl Jones, Carl Oliveros, Carl Traeholt, Carlos B. Zavalaga, Carlos Guerra, Carlos Salvador, Cesar Barrio Amoros, Charles (Chuck) Knapp, Chris Filardi, Chris Gaskin, Chris Pratt, Chris Savigny, Chris Surman, Christopher C. Austin, Christopher Healey, Clare Manning, Clare McInnes, Clare Morrison, Clare Stringer, Claudia Corti, Cleber Alho, Clive Petrovic, Colin O'Donnell, Colin Trainor, Cornelis Hazevoet, Craig Turner, Cynthia Vanderlip, Dan Chender, Dan Merrett, Daniel Rogers, Danielle Whittaker, Darcy Hu, Darrell Whitworth, Darrin Lunde, Dave Houston, Dave Leversee, David Blackburn, David Gibbs, David James Harris, David Leonard, David Li Zuo Wei, David Moyer, David Paton, David Pearson, David Pinaud, David Wiedenfeld, Debbie Martyr, Dena Spatz, Derek Brown, Dick and Anne Hornby, Dick Watling, Diego Tirira, Djoko Iskandar, Don Drake, Don Wilson. , Donald W. Buden, Dr. Johannes Foufopoulos, Dylan Kesler, Eberhard Curio, Eden Maloney, Edith Sabara, Eduardo Palacios, Elaine Murphy, Eleanor Slade, Ellen Lance, Elsa Bonnaud, Emilio Civantos, Emily Tasale, Eric VanderWerf, Eric Wikramanayake, Eric Woehler, Erik Oberg, Erin Hagen, Eugenia Zarza, Exequiel Ezcurra, Fabian Jaksic, Fabio Olmos, Faye Bedford, Fernando Fernandez, Fernando Hidalgo, Finn Danielsen, Francisco Squeo, Franco Andreone, Francois Moutou, Frank Glaw, Fred Amidon, Fred Burton, Fred Kraus, Friederike Spitzenberger, Gad Perry, Gary Roemer, Gary Wiles, George Zug, Gerald Cubitt, Gerry McChesney, Glenn Gerber, Gono Semiadi, Gordon Rodda, Graeme Taylor, Graham Reynolds, Grant Singleton, Gregg Howald, Gregory Pregill, Guillemo Pons, Guillermo Luna Jorquera, Gustavo Jimenez, Guy Dutson, Guy Rondeau, Han (Danny) Donguk, Hannah Edmonds, Harry Carter, Harry Hines, Heather Lynch, Heather Renner, Hernan Vargas, Hidetoshi Ota, Hinrich Kaiser, Holly Freifeld, Howard Clark, Hugh Genoways, Hugh Roberston, Hugo Rainey, Ian Fisher, Ian Lundgren, Ian Tibbetts, Ignacio J. De la Riva, Indira Widmann, Indra yustian, Indraneil Das, Ivan Budinski, Ivan Ineich, Ivan Sarenas, Ivan Tiunov, Iwan Londo, J. Bryan Carroll, J.I. Menzies, J.V. Cheeran, Jacob Esselstyn, Jaime Jimenez, Jaime Ramos, Jaime Salas Zambrano, Jake Levenson, Jakob Fahr, Jakob Fric, James "Skip" Lazell, James Eaton, James McCranie, James Millett, James O'Connor, Jan Dolphijn, Janice Blumenthal, Janice Malloy, Javier Arata, Javier Juste, Jay Penniman, JeanPaul Roux, Jean-Paul Roux, Jeff Brannan, Jeff Church, Jeff Quitugua, Jeffrey Lovich, Jelena Kralj, Jelena Marohnic, Jennifer Cruce, Jenny Daltry, Jez Bird, Jim Goetz, Jim Sanderson, Jo Ann MacKenzie, Jo Hiscock, Joan Mayol Serra, Joel Bried, John Borg, John Damuth, John Davenport, John Dowding, John Healy, John Innes, John Iverson, John Murphy, John Parkes, John Piatt, John Walmsley, John-Pierre Bacle, Jon Riley, Jonathan Ekstrom, Jonathan Slaght, Jorge Palmeirim, Jose A. Mateo, Jose Gonzalez, Jose Luis Herrera, Jose Ottenwalder, Josh Adams, Juan Carlos Gonzalez, Juan Pablo Isacch, Judith Figueroa, Julia Boland, Julia Hanmer, Julia Horrocks, Julie Champeau, Justin Gerlach, Justine Braby, K. Sivakumar, Karen Bourgeois, Karen Varnham, Karl Bossard, Karl Campbell, Kartik Shankar, Kate Faulkner, Katie Green, Katrine Herian, Katsumi Tamada, Kay Van Damme, Kazuto Kawakami, Keisuke Saito, Keith Morris, Kenneth Sugimura, Kevel Lindsay, Kevin de Queiroz, Kim Howell, Kim McConkey, Kirsty Swinnerton, Kiyoaki Ozaki, Kolinio Moce, Kris Helgen, Kristin Nowell, Kuang-yang Lue, Kunikazu Momose, Kuniko Otsuki, Kyle Morrison, L. Lee Grismer, Larisa Zelenskaya, Laurie Harvey, Lawrence Heaney, Leandro Bugoni, Lei Fumin, Liliana Ayala, Liliana M. Davalos, Lindsay Wilson, Lindy Lumsden, Lisa Paciulli, Lise Ruffino, Lloyd Davis, Luca Luiselli, Lyndon Perriman, M.S. Pradhan, Maite Louzao, Manish Chandi, Manori Gunawardena, Manuel Nogales, Marcel Quinten, Marcio Martins, Maren Gaulke, Maria Alice S. Alves, Maria Clara Figueirinhas do Amaral, Maria Felix, Mariano Valverde Romero, Mark Adams, Mark Brazil, Mark Hutchinson, Mark O'Brien, Mark Outerbridge, Mark Ricca, Marleen Bailing, Martim Melo, Martin Dallimer, Martin Jones, Martin Pickersgill, Martti Hario, Mary AlkinsKoo, Masafumi Matsui, Mat Cottam, Matthew McKown, Mayumi Sato, Mel Jose Rivera Rodriguez, Melanie Massaro, Melinda Fowler, Mellissa Price, Menna Jones, Mia Derhe, Michael Brooke, Michael D. Carleton, Michael Tarburton, Michel Breuil, Michel Delaugerre, Michelle Hester, Michelle Kohout, Michelle Reynolds, Miguel A. Landestoy, Miguel Domingues, Miguel McMinn, Miguel Vences, Mikael Nordstrom, Mike Bell, Mike Bingham, Mike Jennings, Mike Rutherford, Milika Ratu, Muhammad Iqbal, Nancy Bunbury, Nancy Karraker, Natalia Collier, Natalya Lawrence, Neal Woodman, Neil Burgess, Neil Cox, Neil Maddison, Neil McCulloch, Nicholas Carlile, Nick Holmes, Nick Mooney, Nick Rendell, Nicola Baccetti, Nicole Crane, Nik Cole, Nobuhiko Kotaka, Noriko Iwai, Numi Mitchell, Nunia Thomas, Oliver Hawlitschek, Oliver Lorvelec, Olivier Pauwels, P. Dee Boersma, Pablo Yorio, Paola Darrigrande, Patrick Couper, Patrick McLaughlin, Paul Orange, Paul Racey, Paul Radley, Paul Scofield, Paul Watler, Pedrin Suarez, Pedro Regalado, Pedro Salazar, Pete McClelland, Peter Harlow, Peter Harrison, Peter Hellyer, Peter Hodum, Peter Moore, Peter Newton, Peter Paul van Dijk, Peter Ryan, Peter Tolson, Peter Widmann, Petros Lymberakis, Phil Trathan, Philip Atkinson, Philip Rundel, Philippe Borsa, Philippe Raust, Philp Myers, Pierre Pistorius, Pietro Lo Cascio, Poppy Benson, Port of Call NZ, R.W.Henry, Rafael Borroto Paez, Rafe Brown, Rainer Hutterer, Raquel Vasconcelos, Rauf Ali, Ray Nias, Ray Pierce, Renata Platenberg, Ricardo Ceia, Ricardo Colon, Ricardo Lima, Ricardo Rodriguez Estrella, Ricardo Scalera, Richard Glor, Richard Griffiths, Richard Phillips, Richard Porter, Rob Butler, Rob Crawford, Rob Gubiani, Rob Hutchinson, Rob Martin, Rob Priddle, Rob Suryan, Robb Kaler, Robert Anderson, Robert Brownell, Robert Cavalcantiy, Robert Fisher, Robert Ibanez, Robert Powell, Robert Puschendorf, Robert Reed, Robert Timm, Rod Hitchmough, Rodrigo Medellin, Rohan Pethiyagoda, Ron LeValley, Ron Moorhouse, Rory Stansbury, Rosana Paredes, Ross Sadlier, Ross Wanless, Russell Thornstrom, Ruth Utzurrum, Ruy Jose Valka Alves, S.R. Chandramouli, S.S. Bist, Sa Santos, Sabir Bin Muzaffar, Salim Javed, Sally Bryant, Sally Poncet, Sam Hyde Roberts, Samia Sarkis, Sandra Buckner, Sandra hervias Parejo, Sara Rocha, Sarah Allen, Sarita Emmanuel, Sasha Auer, Scott Shaffer, Sergio Ticul Alvarez Castaneda, Shahina Ghazanfar, Shaye Wolf, Shuihua Chen, Simon Childerhouse, Sixto Inchaustegui, Sophia Gottlieb, Stanley Shen, Stephanie Pauquet, Stephen Garnett, Stesha Pasachnik, Steve Cranwell, Steve Ebbert, Steven Lapidge, Stuart Butchart, Sue Robinson, Sujit Chakraborty, Sumiko Matsumura, Susan Waugh, Susan Zaluski, Tara Pelembe, Tasneem Khan, Terry Greene, Thierry Micol, Thomas T. Struhsaker, Tigga Kingston, Tilo Nadler, Tim Davenport, Tom Clements, Tom Lee, Tomohiro Deguchi, Tony Foster, Tony Hutson, Tony Martin, Tony Spindalis, Tui De Roy, Ulrich Filbrandt, Ulrike Krauss, Valentín Perez Mellado, Vernon Byrd, Vibhu Prakash, Victor Hugo Reynoso, Victor Sanchez Cordero, Vikash Tatayah, Vincent Bretagnolle, Vincent Nijman, Virgine Millien, Vladimir Zykov, Wei Liang, Wendy Erb, Will Duckworth, Will Mackin, William (Bill) McCord, William Hayes, William Stanley, Winifred Frick, Wolfgang Dittus, Yang Liu, yus Rusila Noor, Yves Frenot.
+	<br/><br/>
+</div>
+
+<div id="disclaimer" data-dojo-type="dijit.Dialog" data-dojo-id="disclaimer" data-dojo-props="title:'Disclaimer', draggable:false">
+	<div id="disclaimerContent" class="dialogContent">
+		Island Conservation, University of California at Santa Cruz, Coastal Conservation Action Laboratory (UCSC CCAL), BirdLife International and IUCN ISSG makes no warranties or representations, express or implied, regarding the use of the material appearing in this dataset with regard to their correctness, reliability, accuracy, or otherwise. The material and geographic designations in this dataset do not imply the expressions of any opinion whatsoever on the part of Island Conservation, UCSC CCAL, BirdLife International or IUCN ISSG concerning the legal status of any country, territory or area, nor concerning the delimitation of its frontiers or boundaries. None of Island Conservation, UCSC CCAL, BirdLife International or IUCN ISSG nor any affiliated or related entities or content providers shall be responsible or liable to any person, firm or corporation for any loss, damage, injury, claim or liability of any kind or character based on or resulting from any information contained in the dataset. Island Conservation, UCSC CCAL, BirdLife International and IUCN ISSG may update or make changes to the data provided at any time without notice; but no commitment is made to update the information contained therein.
+	</div>		
+</div>
+
+<div id="species" data-dojo-type="dijit.Dialog" data-dojo-id="species" data-dojo-props="title:'Species', draggable:false">
+	<div id="speciesContent" class="dialogContent">
+		The species in the Threatened Island Biodiversity Database represent all species that breed on islands and appear on the IUCN Red List as either Critically Endangered or Endangered.<p>Please note this public website does not display all distribution data. In consultation with species experts and IUCN Species Specialist Groups, sensitive distribution data for select species are not displayed on this public website.</p>
+	</div>		
+</div>
+
+<div id="termsOfUse" data-dojo-type="dijit.Dialog" data-dojo-id="termsOfUse" data-dojo-props="title:'Terms of Use', draggable:false">
+	<div id="termsOfUseContent" class="dialogContent">
+		<ol>
+		<li>The data are supplied only for conservation purposes, scientific analysis or research.</li>
+		<li>The recipient of the data will provide a full and appropriate acknowledgement and citation in any materials or publications derived in part or in whole from the data; relevant citation details will be provided with each dataset. For any publications making substantial use of the data, Island Conservation, University of California at Santa Cruz, Coastal Conservation Action Laboratory (UCSC CCAL), BirdLife International and IUCN Invasive Species Specialist Group (ISSG) welcome the opportunity for co-authorship, collaboration and to comment prior to publication. Expressions of interest can be sent to <a href="mailto:tib@islandconservation.org?Subject=Publication(s)%20using%20TIB">tib@islandconservation.org</a>.</li>
+		<li>Reproduction of the dataset or products derived from it, either whole or in part, for commercial purposes is prohibited without prior written permission from a representative of Island Conservation, UCSC CCAL, BirdLife International or IUCN ISSG. For the purposes of these Terms of Use, "commercial purposes" means a) any use by, on behalf of, or to inform or assist the activities of, a commercial entity (an entity that operates "for profit"€™) or b) use by any non-profit entity for the purposes of revenue generation. If you require permission please contact <a href="mailto:tib@islandconservation.org?Subject=Commercial%20use%20of%20TIB">tib@islandconservation.org</a>.</li>
+		<li>The recipient will not publish the data in their original format, either whole or in part, on a website, FTP site, CD, memory stick or any other media. The recipient should provide a link to the original data source location at www.tib.islandconservation.org  where appropriate.</li>
+		<li>Use of these data does not constitute endorsement by Island Conservation, UCSC CCAL, BirdLife International or IUCN ISSG of any derived products, reports or analyses. The Island Conservation, University of California, BirdLife International or IUCN ISSG logos must not be used on any derived products, reports or analyses, or supporting materials, without express permission.</li>
+		<li>The recipient will only use the data provided for the purpose for which it was requested, if subsequent or different use is required the recipient must contact the Island Conservation, University of California, BirdLife International or IUCN ISSG at <a href="mailto:tib@islandconservation.org?Subject=Modified%20use%20of%20TIB">tib@islandconservation.org</a> again for written approval.</li>
+		<li>The recipient will not pass the original datasets on to third parties and will direct all requests for use of the data back to the Island Conservation, University of California, BirdLife International or IUCN ISSG at <a href="mailto:tib@islandconservation.org">tib@islandconservation.org</a>.</li>
+		<li>The recipient may only pass on datasets derived from the data supplied by Island Conservation, University of California, BirdLife International or IUCN ISSG if these derived data are supplied with the same terms of use.</li>
+		<li>Island Conservation, UCSC CCAL, BirdLife International and IUCN ISSG reserve the right to comment on the accuracy of representation of the data in material produced by a recipient.</li>
+		<li>Island Conservation, UCSC CCAL BirdLife International and IUCN ISSG endeavor to maintain accurate and up-to-date data at all times, but can accept no responsibility for the consequences of errors or omissions in the data, for misuse of the data by any organization or individual, or for any damage done to computing systems into which the data are entered (see Disclaimer).</li>
+		<li>Either an electronic or two paper copies of all products published using data supplied by Island Conservation, UCSC CCAL, BirdLife International or IUCN ISSG will be sent, free of charge, c/o - Island Conservation, 100 Shaffer Road, Santa Cruz CA USA 95060 or via email to <a href="mailto:tib@islandconservation.org?Subject=Publication(s)%20using%20TIB">tib@islandconservation.org</a>.</li>
+		</ol>
+	</div>
+	<div id="csvTermsDiv" style="display:none" class="termsDivAgree">
+		<input id="csvTermsCheck" name="csvTermsCheck" data-dojo-type="dijit.form.CheckBox" onChange="updateTermsContinueButton('csv')"/>
+		<label id="csvTermsCheck_label" for="csvTermsCheck" class="termsCheckLabel">I agree to the conditions outlined in the Terms of Use above.</label>
+		<div class="termsDivButton">
+			<button data-dojo-type="dijit.form.Button" type="button" id="csvContinueButton" onClick="agreeToTerms('csv')">Continue</button>
+		</div>
+	</div>
+	<div id="printTermsDiv" style="display:none" class="termsDivAgree">
+		<input id="printTermsCheck" name="printTermsCheck" data-dojo-type="dijit.form.CheckBox" onChange="updateTermsContinueButton('print')"/>
+		<label id="printTermsCheck_label" for="printTermsCheck" class="termsCheckLabel">I agree to the conditions outlined in the Terms of Use above.</label>
+		<div class="termsDivButton">
+			<button data-dojo-type="dijit.form.Button" type="button" id="printContinueButton" onClick="agreeToTerms('print')">Continue</button>
+		</div>
+	</div>
+</div>
+<div id="errors" data-dojo-type="dijit.Dialog" data-dojo-id="errors" data-dojo-props="title:'How to Help', draggable:false">
+	<div id="errorContent" class="dialogContent">
+		Please help us to maintain the most accurate and up-to-date database of insular threatened species at risk from invasive vertebrates.
+		<br/><br/>
+		Island Conservation, University of California at Santa Cruz, Coastal Conservation Action Laboratory (UCSC CCAL), BirdLife International and IUCN ISSG endeavors to maintain accurate and up-to-date data at all times. However, if errors or omissions are identified, the user should notify <a href="mailto:tib@islandconservation.org">tib@islandconservation.org</a> so that these can be corrected in future releases of the data.
+	</div>
+</div>
+<div id="definitions" data-dojo-type="dijit.Dialog" data-dojo-id="definitions" data-dojo-props="title:'Breeding Status Definitions', draggable:false">
+	<div id="definitionsContent" >
+		<strong>BIRD &amp; BAT</strong>
+		<div class="definitionCategory">
+			<strong><em>Present Breeding Status - Last ~20 years: 1990-Present</em></strong>
+			<div class="definition">
+				<span id="bb_present_confirmed_toggle">[+]</span><span class="definitionName" id="bb_present_confirmed" onclick="toggleDefinition(this.id)">Confirmed</span>
+				<div class="definitionSub" id="bb_present_confirmed_sub">
+				Definition: Leading expert or literature CONFIRMs breeding and/or species is a single-island endemic
+				<em>Birds</em>: breeding adult pairs, active nests, live/dead fledglings, eggs (whole or fragments), adults flying into crevices/vegetation/burrows with food or nesting materials; female with egg in oviduct (caught in mist nets or with other survey tools); singing/calling male, bird (or) pair holding territory.
+				<br/><br/>
+				<em>Bats</em>: "colony" described, mating recorded, observations of "baby" bats or preflight young, records of capture of subadults, records of females tending young; records of mating displays in bat roosts; breeding specimens collected; records of capture of pregnant or lactating females
+				</div>
+				<br/>
+				<span id="bb_present_probable_toggle">[+]</span><span class="definitionName" id="bb_present_probable" onclick="toggleDefinition(this.id)">Probable</span>
+				<div class="definitionSub" id="bb_present_probable_sub">
+				Definition: Breeding not "€œConfirmed" but is suspected based on a number of factors and evidence (include in notes) including:</p>
+				<p><em>Birds</em>: breeding adults found in mist-nets (females without egg in oviduct), brood patches, "€œbreeding adult fall outs", radar surveys, spot-light surveys, acoustic monitoring, guano scents, bones of young; Specimens or bones collected that led collector to believe breeding had occurred ; used/abandoned nests.</p>
+				<p><em>Bats</em>:, "probable colony" recorded; breeding island mentioned in paper; species is endemic to the region; species is non-migratory </p>
+				1) Island Residents - if no other information but "€œresident" is found in the resources or if the word "œresident" was not used but the species "€˜population"€™ is described in the literature. <br />
+				2) Region Endemic - Species is endemic to the region, specific island has been identified and information on the species is available from the past 20 years but no breeding evidence is found in the literature. <br />
+				3) No/unclear breeding information found and species has not been surveyed/observed on island in last 20 yrs  BUT an expert confirms/suspects the species is still there.
+				</div>
+				<br/>
+				<span id="bb_present_potential_toggle">[+]</span><span class="definitionName" id="bb_present_potential" onclick="toggleDefinition(this.id)">Potential</span>
+				<div class="definitionSub" id="bb_present_potential_sub">
+				Definition: Island with Species X in one of the historic breeding categories, but current status is unclear. <br/>
+				1) Potentially "Extirpated"
+				  <ul>
+					<li>Most recent survey/island visit(s) yielded no evidence of breeding and it is unclear if species is extirpated. </li>
+					<li>Species is definitely absent from the island but the past history is "potential breeding"€ and NOT "confirmed" or "€œprobable".€</li>
+				  </ul>
+				2) If species X varies inter-annually (changes island but stays in same island group from year to year) and was not found on the island during most recent survey<br />
+				3) Island/species has not been surveyed within the last 20 years or unclear if it has been surveyed in the last 20 years<br />
+				4) Observation/survey inconclusive or information about breeding contradicting
+				<ul>
+					<li>Example: adults observed but researcher inferred they were from somewhere else; species in a mixed colony and unclear from research which species was actually present; no breeding observed but researcher inferred it was too early for breeding, etc.</li>
+				</ul>
+				5) No/inconclusive survey but "suitable breeding habitat"€™ recorded by researcher with expertise of the species and who has confirmed other breeding islands.<br />
+				6) At-sea survey recorded breeders near a specific island<br />
+				7) Observations of non-breeders on islands with past breeding<br />
+				8) Recent surveys may have occurred but expert opinion unclear and they have not published or shared related data.<br />
+				9) Specimens collected in last 20 years but breeding not recorded or determined
+				</div>
+				<br/>
+				<span id="bb_present_deficient_toggle">[+]</span><span class="definitionName" id="bb_present_deficient" onclick="toggleDefinition(this.id)">Data Deficient</span>
+				<div class="definitionSub" id="bb_present_deficient_sub">
+				Definition: Island with Species X recorded as "Data Deficient" or "Potential Breeding"€ for historic breeding status and status has not been updated in the last 20 years.<br/>
+				  1) Not enough data to extrapolate exact island location; breeding island not provided in data or in communications with experts. </br>
+				  2) Data from the last 20 years not available
+				<ul><li>Unshared data, unpublished reports that you can't access, no response from experts; have not been able to find any information on surveys or records; etc.</li>
+					<li>If an expert suspects breeding but the data is unclear or is contradicting with other data.  </li>
+				</ul>
+				</div>
+				<br/>
+				<span id="bb_present_extirpated_toggle">[+]</span><span class="definitionName" id="bb_present_extirpated" onclick="toggleDefinition(this.id)">Extirpated</span>
+				<div class="definitionSub" id="bb_present_extirpated_sub">
+				Definition: Confirmed extirpation from the island. Record "extirpated" in notes and any information about when it was last observed/surveyed.<br/>
+				** Must be Confirmed or Probable breeding in the past**
+				</div>
+				<br/>
+				<span id="bb_present_extinct_toggle">[+]</span><span class="definitionName" id="bb_present_extinct" onclick="toggleDefinition(this.id)">Extinct</span>
+				<div class="definitionSub" id="bb_present_extinct_sub">
+				Definition: Currently listed as Extinct or Extinct in the Wild by IUCN, but bred on the island prior to its extinction (do not use if species exists somewhere in the wild)
+				</div>
+			</div>
+			<br/>
+			<strong><em>Historic Breeding Status - Last 21-200 years: &lt;1990</em></strong>
+			<div class="definition">
+				<span id="bb_historic_confirmed_toggle">[+]</span><span class="definitionName" id="bb_historic_confirmed" onclick="toggleDefinition(this.id)">Confirmed</span>
+				<div class="definitionSub" id="bb_historic_confirmed_sub">
+				Definition: Same criteria and notes as for present breeding status but used ONLY if the species is NOT CONFIRMED in the present.  If species is confirmed in the present, use NA as a status in the past
+				</div>
+				<br/>
+				<span id="bb_historic_probable_toggle">[+]</span><span class="definitionName" id="bb_historic_probable" onclick="toggleDefinition(this.id)">Probable</span>
+				<div class="definitionSub" id="bb_historic_probable_sub">
+				Definition: Same criteria and notes as for present breeding status but used ONLY if the species is NOT CONFIRMED in the present.  If species is confirmed in the present, use NA as a status in the past
+				</div>
+				<br/>
+				<span id="bb_historic_potential_toggle">[+]</span><span class="definitionName" id="bb_historic_potential" onclick="toggleDefinition(this.id)">Potential</span>
+				<div class="definitionSub" id="bb_historic_potential_sub">
+				Definition: Same criteria and notes as for present breeding status but used ONLY if the species is NOT CONFIRMED in the present.  If species is confirmed in the present, use NA as a status in the past<br />
+				 1) Extra criteria/notes
+				<ul>
+				  <li>If an expert or publication confirms past breeding but the record/account of evidence type or year of record is still unclear.</li>
+					<li>Specimens collected in past years but breeding evidence not recorded or determined.</li>
+					<li>Expert or literature confirms the species was observed on the island &gt;1990 but breeding was never described (and it was NOT a single-island endemic)</li>
+				</ul>
+				</div>
+				<br/>
+				<span id="bb_historic_deficient_toggle">[+]</span><span class="definitionName" id="bb_historic_deficient" onclick="toggleDefinition(this.id)">Data Deficient</span>
+				<div class="definitionSub" id="bb_historic_deficient_sub">
+				Definition: Same criteria and notes as for present breeding status but used ONLY if the species is NOT CONFIRMED in the present.  If species is confirmed in the present, use NA as a status in the past<br />
+				1) Extra criteria/notes
+				<ul>
+				  <li>Breeding data from last 21-200 years not available/unclear</li>
+				  <li>Unshared data, unpublished reports that you canâ€™t access, no response from experts or information supplied unclear/contradicting; have not been able to find any information on surveys or records</li>
+				</ul>
+				</div>
+				<br/>
+				<span id="bb_historic_na_toggle">[+]</span><span class="definitionName" id="bb_historic_na" onclick="toggleDefinition(this.id)">Not Applicable (NA)</span>
+				<div class="definitionSub" id="bb_historic_na_sub">
+				1) Species listed as "€œCONFIRMED"€ for Present Breeding Status<br />
+				2) Species translocated to current island but with no historic status there
+				</div>
+			</div>
+		</div>
+		<br/>
+		<strong>MAMMAL, REPTILE, AMPHIBIAN</strong>
+		<div class="definitionCategory">
+		<em><strong>Present Breeding Status -€“ Last ~20 years: 1990-Present</strong></em>
+		<div class="definition">
+				<span id="mr_present_confirmed_toggle">[+]</span><span class="definitionName" id="mr_present_confirmed" onclick="toggleDefinition(this.id)">Confirmed</span>
+				<div class="definitionSub" id="mr_present_confirmed_sub">
+				Definition: Leading expert or literature CONFIRMs breeding and/or species is a single-island endemic</p>
+				1) Species observed, recorded, surveyed; collected (including remains) in last 20 years.<br/>
+				2) Species is reported in a publication within the last 20 years or experts confirm current breeding but no record or survey year is available (only used if other choices not available or found)
+				</div>
+				<br/>
+				<span id="mr_present_probable_toggle">[+]</span><span class="definitionName" id="mr_present_probable" onclick="toggleDefinition(this.id)">Probable</span>
+				<div class="definitionSub" id="mr_present_probable_sub">
+				Definition: Breeding not "€œConfirmed"€ but is suspected based on a number of factors and evidence (include in notes) including:<br/>
+				1) Island Residents - if no other information but "resident"€ is found in the resources or if the word "resident" was not used but the species "population" is described in the literature. <br />
+				2) Region Endemic -“ Species is endemic to the region, specific island has been identified and information on the species is available from the past 20 years but no breeding evidence is found in the literature. <br />
+				3) No/unclear breeding information found and species has not been surveyed/observed on island in last 20 yrs BUT an expert confirms/suspects the species is still there.
+				</div>
+				<br/>
+				<span id="mr_present_potential_toggle">[+]</span><span class="definitionName" id="mr_present_potential" onclick="toggleDefinition(this.id)">Potential</span>
+				<div class="definitionSub" id="mr_present_potential_sub">
+				Definition: Island with Species X in one of the historic breeding categories, but current status is unclear.<br/>
+				1)	Potentially "Extirpated"
+				<ul>
+				<li>Most recent survey/island visit(s) yielded no evidence of breeding and it is unclear if species is extirpated. </li>
+				<li>Species is definitely absent from the island but the past history is "€œpotential breeding" and NOT "€œconfirmed"€ or "œprobable".€ </li>
+				</ul>
+				2) Inconclusive/conflicting surveys, searches, or data<br/>
+				3) Suitable breeding habitat recorded by researcher with expertise of the species and who has confirmed other breeding islands<br/>
+				4) Island/species has not been surveyed or observed within the last 20 years<br />
+				<ul>
+				<li>Island/species said to be on the island but the status is unclear and only records are over 20 years old</li>
+				</ul>
+				5) Bones from species found on island, age unclear<br/>
+				6) Recent surveys may have occurred but expert opinion unclear and they have not published or shared related data.<br/>
+				</div>
+				<br/>
+				<span id="mr_present_deficient_toggle">[+]</span><span class="definitionName" id="mr_present_deficient" onclick="toggleDefinition(this.id)">Data Deficient</span>
+				<div class="definitionSub" id="mr_present_deficient_sub">
+				Definition: Island with Species X recorded as "Data Deficient"€ or "œPotential Breeding" for historic breeding status and status has not been updated in the last 20 years. </p>
+				1) Not enough data to extrapolate exact island location; breeding island not provided in data or in communications with experts.<br/>
+				2) Data from the last 20 years not available; for example:
+				<ul>
+				<li>Unshared data, unpublished reports that you canâ€™t access, no response from experts; have not been able to find any information on surveys or records; etc.</li>
+				<li>If an expert suspects breeding but the data is unclear or is contradicting with other data.</li>
+				</ul>
+				</div>
+				<br/>
+				<span id="mr_present_extirpated_toggle">[+]</span><span class="definitionName" id="mr_present_extirpated" onclick="toggleDefinition(this.id)">Extirpated</span>
+				<div class="definitionSub" id="mr_present_extirpated_sub">
+				Definition: Confirmed extirpation from the island. Record "extirpated"€ in notes and any information about when it was last observed/surveyed.<br/>
+				** Must be Confirmed or Probable breeding in the past**
+				</div>
+				<br/>
+				<span id="mr_present_extinct_toggle">[+]</span><span class="definitionName" id="mr_present_extinct" onclick="toggleDefinition(this.id)">Extinct</span>
+				<div class="definitionSub" id="mr_present_extinct_sub">
+				Definition: Currently listed as Extinct or Extinct in the Wild by IUCN, but bred on the island prior to its extinction (do not use if species exists somewhere in the wild)
+				</div>
+			</div>
+			<br/>
+
+			<strong><em>Historic Breeding Status -€“ Last 21-200 years: &lt;1990</em></strong>
+			<div class="definition">
+				<span id="mr_historic_confirmed_toggle">[+]</span><span class="definitionName" id="mr_historic_confirmed" onclick="toggleDefinition(this.id)">Confirmed</span>
+				<div class="definitionSub" id="mr_historic_confirmed_sub">
+				Definition: Same criteria and notes as for present breeding status but used ONLY if the species is NOT CONFIRMED in the present.  If species is confirmed in the present, use NA as a status in the past
+				</div>
+				<br/>
+				<span id="mr_historic_probable_toggle">[+]</span><span class="definitionName" id="mr_historic_probable" onclick="toggleDefinition(this.id)">Probable</span>
+				<div class="definitionSub" id="mr_historic_probable_sub">
+				Definition: Same criteria and notes as for present breeding status but used ONLY if the species is NOT CONFIRMED in the present.  If species is confirmed in the present, use NA as a status in the past
+				</div>
+				<br/>
+				<span id="mr_historic_potential_toggle">[+]</span><span class="definitionName" id="mr_historic_potential" onclick="toggleDefinition(this.id)">Potential</span>
+				<div class="definitionSub" id="mr_historic_potential_sub">
+				Definition: Same criteria and notes as for present breeding status but used ONLY if the species is NOT CONFIRMED in the present.  If species is confirmed in the present, use NA as a status in the past<br />
+				 1) Extra criteria/notes
+				<ul>
+					<li>If an expert or publication confirms past breeding but the record/account of evidence type or year of record is still unclear.</li>
+					<li>Specimens collected in past years but breeding evidence not recorded or determined.</li>
+					<li>Expert or literature confirms the species was observed on the island &gt;1990 but breeding was never described (and it was NOT a single-island endemic).</li>
+				</ul>
+				</div>
+				<br/>
+				<span id="mr_historic_deficient_toggle">[+]</span><span class="definitionName" id="mr_historic_deficient" onclick="toggleDefinition(this.id)">Data Deficient</span>
+				<div class="definitionSub" id="mr_historic_deficient_sub">
+				Definition: Same criteria and notes as for present breeding status but used ONLY if the species is NOT CONFIRMED in the present.  If species is confirmed in the present, use NA as a status in the past<br />
+				1) Extra criteria/notes
+				<ul>
+				  <li>Breeding data from last 21-200 years not available/unclear</li>
+				  <li>Unshared data, unpublished reports that you canâ€™t access, no response from experts or information supplied unclear/contradicting; have not been able to find any information on surveys or records</li>
+				</ul>
+				</div>
+				<br/>
+				<span id="mr_historic_na_toggle">[+]</span><span class="definitionName" id="mr_historic_na" onclick="toggleDefinition(this.id)">Not Applicable (NA)</span>
+				<div class="definitionSub" id="mr_historic_na_sub">
+				1) Species listed as "CONFIRMED" for Present Breeding Status<br />
+				2) Species translocated to current island but with no historic status there
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
